@@ -1,0 +1,18 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: isp_support_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: isp_support_db
+      MYSQL_USER: isp_user
+      MYSQL_PASSWORD: isp_password
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/mock_data.sql:/docker-entrypoint-initdb.d/mock_data.sql
+
+volumes:
+  mysql_data:
