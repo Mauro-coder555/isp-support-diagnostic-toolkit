@@ -7,26 +7,27 @@ El proyecto permite buscar un cliente en una base de datos MySQL, revisar su est
 ## Índice
 
 - [Descripción](#descripción)
-- [Qué ofrece](#qué-ofrece)
-- [Cosas buenas del proyecto](#cosas-buenas-del-proyecto)
+- [Funcionalidades](#funcionalidades)
 - [Herramientas usadas](#herramientas-usadas)
 - [Estructura del proyecto](#estructura-del-proyecto)
 - [Cómo funciona](#cómo-funciona)
 - [Instalación](#instalación)
 - [Levantar MySQL con Docker](#levantar-mysql-con-docker)
 - [Uso](#uso)
+- [Ejemplo de ejecución](#ejemplo-de-ejecución)
 - [Reportes generados](#reportes-generados)
 - [Notas importantes](#notas-importantes)
+- [Posibles mejoras](#posibles-mejoras)
 
 ## Descripción
 
-Este proyecto está pensado como una práctica cercana a un escenario real de soporte técnico para ISP.
+Este proyecto simula un flujo básico de diagnóstico para soporte técnico en un proveedor de internet.
 
-La idea es que un operador pueda consultar rápidamente información de un cliente y tener una primera orientación sobre el posible problema: si el servicio está activo, si tiene IP asignada, si el router reporta online, si RADIUS autoriza correctamente, si hay tickets abiertos o si existen problemas básicos de conectividad.
+El objetivo es practicar cómo un operador podría consultar información de un cliente, revisar el estado del servicio y obtener una primera orientación sobre posibles causas del problema, como falta de IP asignada, router offline, fallas básicas de conectividad, errores de DNS o estados simulados de RADIUS y TR-069.
 
-No se conecta a infraestructura real de ISP. Algunos conceptos como RADIUS y TR-069 están simulados desde la base de datos para practicar el flujo de diagnóstico.
+La herramienta no se conecta a infraestructura real de ISP. Los datos y estados técnicos están simulados en una base MySQL local para poder practicar el flujo de diagnóstico en un entorno controlado.
 
-## Qué ofrece
+## Funcionalidades
 
 - Consulta de clientes desde una base de datos MySQL.
 - Revisión del estado del servicio.
@@ -37,15 +38,6 @@ No se conecta a infraestructura real de ISP. Algunos conceptos como RADIUS y TR-
 - Detección simple de posibles causas.
 - Generación automática de reportes técnicos en Markdown.
 - Flujo de trabajo por terminal, simple y fácil de probar.
-
-## Cosas buenas del proyecto
-
-- Es simple de ejecutar y entender.
-- Representa un caso bastante cercano al trabajo de soporte técnico.
-- Combina Python, MySQL, Docker y comandos de red.
-- Permite practicar lectura de datos, diagnóstico y documentación.
-- Se puede seguir mejorando con nuevas validaciones, menú interactivo o más tablas.
-- Es un buen proyecto para mostrar en GitHub y LinkedIn porque conecta programación con soporte IT.
 
 ## Herramientas usadas
 
@@ -95,6 +87,10 @@ isp-support-diagnostic-toolkit/
 │
 ├── reports/
 │   └── .gitkeep
+│
+├── assets/
+│   └── screenshots/
+│       └── client-diagnosis-example.png
 │
 ├── .env.example
 ├── .gitignore
@@ -207,6 +203,10 @@ Cliente inexistente:
 python app\main.py --client 999
 ```
 
+## Ejemplo de ejecución
+
+![Ejemplo de diagnóstico en terminal](assets/screenshots/client-diagnosis-example.png)
+
 ## Reportes generados
 
 La herramienta genera reportes en Markdown dentro de la carpeta `reports/`.
@@ -227,11 +227,11 @@ Los estados de RADIUS y TR-069 están simulados para practicar el razonamiento t
 
 ## Posibles mejoras
 
-- Agregar un menú interactivo por consola.
-- Permitir búsqueda por nombre del cliente.
-- Agregar tabla de tickets.
-- Generar reportes en PDF.
-- Simular historial de caídas.
-- Agregar pruebas unitarias.
-- Crear una versión con interfaz web simple.
-- Sumar logs de diagnóstico.
+- Agregar un menú interactivo por consola para facilitar el uso sin recordar comandos.
+- Permitir búsqueda de clientes por nombre, además del ID.
+- Agregar una tabla de tickets para relacionar el diagnóstico con reclamos abiertos.
+- Generar reportes en PDF además de Markdown.
+- Simular historial de caídas o eventos del servicio.
+- Agregar pruebas unitarias para validar la lógica de diagnóstico.
+- Crear una interfaz web simple para ejecutar diagnósticos desde el navegador.
+- Incorporar logs de diagnóstico para registrar errores, consultas y resultados de ejecución.
