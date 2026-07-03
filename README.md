@@ -207,6 +207,9 @@ python app\main.py --client 999
 
 ![Ejemplo de diagnóstico en terminal](assets/screenshots/client-diagnosis-example.png)
 
+
+En este ejemplo, el gateway `192.168.10.1` no responde porque es una IP privada usada como dato simulado. Esto permite mostrar cómo la herramienta detecta un posible problema de conectividad dentro del flujo de soporte.
+
 ## Reportes generados
 
 La herramienta genera reportes en Markdown dentro de la carpeta `reports/`.
